@@ -1,0 +1,16 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: banking-portal-api-app-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/vivekhbti/banking-portal-api.git # URL of your Git repository
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfile: Dockerfile # Path to your Dockerfile
+  output:
+    to:
+      name: banking-portal-api-image # Name of the image stream

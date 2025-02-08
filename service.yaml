@@ -1,0 +1,12 @@
+piVersion: v1
+kind: Service
+metadata:
+  name: banking-portal-api-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080 # The port external clients will use
+      targetPort: 8080 # The port your container listens on
+  selector:
+    app: banking-portal-api # Matches the labels in your DeploymentConfig
+  type: LoadBalancer # Or 'NodePort' if you prefer

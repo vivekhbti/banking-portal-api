@@ -1,0 +1,26 @@
+apiVersion: apps.openshift.io/v1 # Or 'apps/v1' for Kubernetes
+kind: DeploymentConfig # Or 'Deployment' for Kubernetes
+metadata:
+  namespace: vivekhbti-dev
+  name: banking-portal-api-app-deployment
+spec:
+  replicas: 1 # Number of pods (instances)
+  selector:
+    app: banking-portal-api
+  template:
+    metadata:
+      labels:
+        app: banking-portal-api
+    spec:
+      containers:
+        - name: banking-portal-api-container
+          image: banking-portal-api-image # Will be replaced by OpenShift
+          ports:
+            - containerPort: 8080 # Match the port in your Dockerfile and application
+          resources: # Optional resource limits and requests
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
